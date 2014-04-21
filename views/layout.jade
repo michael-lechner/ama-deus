@@ -1,7 +1,33 @@
 doctype html
 html
   head
-    title= title
+    head
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+    title Ama-Deus
+    link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    .container
+        .row
+            .col-sm-3
+            .col-sm-3
+                img(src='/images/ama-deus-logo.png').navbar-brand.main-logo
+            .col-sm-6
+                nav(role="navigation").navbar.navbar-default.navbar-static-top.nav
+                    .navbar-header
+                        button(type="button", data-toggle="collapse", data-target=".navbar-ex1-collapse").navbar-toggle
+                            span.sr-only Toggle navigation
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                    .collapse.navbar-collapse.navbar-ex1-collapse
+                        ul.nav.navbar-nav.list-inline
+                            li.home.active: a(href='#home' data-scroll) ABOUT
+                            li.about: a(href='#about' data-scroll) COURSES
+                            li.work: a(href='#work' data-scroll) INFO
+                            li.contact: a(href='#contact' data-scroll) CONTACT
     block content
+  script(src="http://code.jquery.com/jquery-2.0.3.min.js")
+  script(src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+  script(src="javascripts/main.js")
