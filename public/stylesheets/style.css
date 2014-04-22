@@ -1,6 +1,7 @@
-body {
+body,
+html {
   max-width: 1440px;
-  overflow: none;
+  overflow: hidden;
 }
 img {
   max-width: 100%;
@@ -32,7 +33,7 @@ ul.navbar-nav {
   color: #999;
 }
 .nav-cont {
-  margin: 0px 0px 0px 40px;
+  margin: 0px 0px 0px 3%;
 }
 .main-logo {
   height: 125px;
@@ -52,14 +53,16 @@ ul.navbar-nav {
 }
 .col-sm-5.center-cont {
   padding: 0px 10px 0px 25px;
+  overflow: none;
 }
 .row.center-row {
   padding: 0px 0px 10px 0px;
 }
 .col-sm-12.index-footer {
   background-color: #f0f0f0;
-  margin: 10px 0px 0px 25px;
+  margin: 10px 0px 0px 2.2%;
   padding: 30px 20px 20px 20px;
   font-size: 12px;
   letter-spacing: 3px;
+  width: 97.8%;
 }

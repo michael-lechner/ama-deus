@@ -12,7 +12,8 @@ html
         .row
             .col-sm-2
             .col-sm-3
-                img(src='/images/ama-deus-logo.png').navbar-brand.main-logo
+                a(href='/')
+                    img(src='/images/ama-deus-logo.png').navbar-brand.main-logo
             .col-sm-6.nav-cont
                 nav(role="navigation").navbar.navbar-default.navbar-static-top.nav
                     .navbar-header
@@ -22,11 +23,11 @@ html
                             span.icon-bar
                             span.icon-bar
                     .collapse.navbar-collapse.navbar-ex1-collapse
-                        ul.nav.navbar-nav.list-inline
-                            li.home.active: a(href='#home' data-scroll) ABOUT
-                            li.about: a(href='#about' data-scroll) COURSES
-                            li.work: a(href='#work' data-scroll) INFO
-                            li.contact: a(href='#contact' data-scroll) CONTACT
+                        ul.nav.navbar-nav.list-inline.main-nav
+                            li.home: a(href='javascript:void(0)') ABOUT
+                            li.about: a(href='javascript:void(0)') COURSES
+                            li.work: a(href='javascript:void(0)') INFO
+                            li.contact: a(href='javascript:void(0)') CONTACT
     block content
   script(src="http://code.jquery.com/jquery-2.0.3.min.js")
   script(src='javascripts/jquery-ui-1.10.4.custom.min.js')
