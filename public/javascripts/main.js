@@ -12,6 +12,7 @@ $(function () {
     });
 
     $('.main-nav').on('click', '.about', function () {
+        $(this).addClass('active');
         renderView('about');
     });
 
