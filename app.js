@@ -27,12 +27,14 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+/*** nav ***/
 app.get('/', main.index);
 app.get('/home', main.home);
 app.get('/about', main.about);
 app.get('/courses', main.courses);
 app.get('/info', main.info);
 app.get('/contact', main.contact);
+/************/
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
