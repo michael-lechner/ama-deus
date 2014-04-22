@@ -7,13 +7,29 @@ $(function () {
     });
 
     //  nav
+    $('.main-logo').on('click', function () {
+        renderView('home');
+    });
+
     $('.main-nav').on('click', '.about', function () {
-        renderCourses();
+        renderView('about');
+    });
+
+    $('.main-nav').on('click', '.courses', function () {
+        renderView('courses');
+    });
+    
+    $('.main-nav').on('click', '.info', function () {
+        renderView('info');
+    });
+    
+    $('.main-nav').on('click', '.contact', function () {
+        renderView('contact');
     });
     /*******************************/
 
-    var renderCourses = function () {
-        $.get('/courses/', {}, function (d) {
+    var renderView = function (view) {
+        $.get('/' + view + '/', {}, function (d) {
             var block = $('.main-block')
 
             block.fadeOut(300, function () {

@@ -38,6 +38,7 @@ ul.navbar-nav {
 .main-logo {
   height: 125px;
   margin: 15px 0px 0px 0px;
+  cursor: pointer;
 }
 .col-sm-12.no-padding {
   padding: 0px;
