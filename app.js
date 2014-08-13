@@ -40,8 +40,9 @@ app.get('/contact', main.contact);
 /************/
 
 /*** admin ***/
-app.get('/admin', admin.index);
-app.post('/test-form', admin.test);
+app.get('/admin', admin.readPractitioner);
+app.post('/create-practitioner', admin.createPractitioner);
+app.post('/delete-practitioner', admin.deletePractitioner);
 /*************/
 
 http.createServer(app).listen(app.get('port'), function(){

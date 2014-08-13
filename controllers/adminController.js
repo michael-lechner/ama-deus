@@ -3,8 +3,7 @@ var practitionerModel = require('../models/practitionerModel.js');
 var courseModel = require('../models/courseModel.js');
 
 var admin = module.exports = {
-    test: function (req, res){
-        console.log('req', req.body);
+    createPractitioner: function (req, res){
         var practitioner = new practitionerModel({
             name: req.body.name,
             country: req.body.country,
@@ -13,17 +12,24 @@ var admin = module.exports = {
         });
 
         practitioner.save();
-
+        
         practitionerModel.find({}, function(err, docs){
-            if(err) console.log('error in adminController.test', err);
-            res.send(docs);
+            if(err) console.log('error in adminController.index', err);
+            res.render('admin.jade', { 'practitioners': docs })
         });
-        // courseModel.find({}, function(err, docs){
-        //     if(err) console.log('erro in amdinController.test', err);
-        //     res.send(docs);
-        // });
     },
-    index: function(req, res){
-        res.render('admin.jade')
+    readPractitioner: function(req, res){
+        practitionerModel.find({}, function(err, docs){
+            if(err) console.log('error in adminController.index', err);
+            res.render('admin.jade', { 'practitioners': docs })
+        });
+    },
+    deletePractitioner: function (req, res){
+        practitionerModel.findOne({_id: req.body.id}, function(err, doc){
+            if(err) console.log('error in adminController.index', err);
+            //doc.remove();
+            res.send(doc)
+        });      
     }
+
 }
