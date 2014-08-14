@@ -43,6 +43,7 @@ app.get('/contact', main.contact);
 app.get('/admin', admin.readPractitioner);
 app.post('/create-practitioner', admin.createPractitioner);
 app.post('/delete-practitioner', admin.deletePractitioner);
+app.post('/update-practitioner', admin.updatePractitioner);
 /*************/
 
 http.createServer(app).listen(app.get('port'), function(){

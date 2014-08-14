@@ -9,7 +9,8 @@ html
 body        
     .container
         .row
-            form(role='form', method='POST', action='/create-practitioner').form-inline
+            //- form(role='form', method='POST', action='/create-practitioner').form-inline
+            form(role='form').form-inline    
                 h4 New Practictioner
                 .form-group.admin-input
                     input(type='text', name='name', placeholder='Name').form-control
@@ -19,15 +20,15 @@ body
                     input(type='email', name='email', placeholder='Email').form-control
                 .form-group.admin-input
                     input(type='text', name='region', placeholder='Region').form-control
-                input(type='submit', value="submit").btn.btn-default
+                input(type='submit', value="submit").btn.btn-default.practitioner-submit
         .row
             table.table.table-hover.display-table        
                 for practitioner in practitioners
                     tr(data-id = '#{practitioner._id}')
-                        td.text-capitalize #{practitioner.name}
-                        td.text-uppercase #{practitioner.country}
-                        td #{practitioner.email}
-                        td.text-capitalize #{practitioner.region}
+                        td(data-name='name').name-cell.editable-field.text-capitalize #{practitioner.name}
+                        td(data-name='country').country-cell.editable-field.text-uppercase #{practitioner.country}
+                        td(data-name='email').email-cell.editable-field #{practitioner.email}
+                        td(data-name='region').region-cell.editable-field.text-capitalize #{practitioner.region}
                         td
                             .span.crud-control.delete-entry x
 script(src="http://code.jquery.com/jquery-2.0.3.min.js")

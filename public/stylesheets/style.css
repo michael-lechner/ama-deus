@@ -93,3 +93,15 @@ ul.navbar-nav {
 .crud-control {
   cursor: pointer;
 }
+.name-cell {
+  width: 300px;
+}
+.country-cell {
+  width: 80px;
+}
+.email-cell {
+  width: 300px;
+}
+.region-cell {
+  width: 250px;
+}
