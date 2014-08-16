@@ -87,8 +87,20 @@ ul.navbar-nav {
   width: 97.8%;
 }
 /******** admin *********/
+.nav.nav-tabs li a {
+  outline: none;
+}
+.admin-container {
+  margin-top: 50px;
+}
+.admin-form .admin-input input {
+  width: 100%;
+}
 .admin-input {
   padding-right: 15px;
+}
+.nav.nav-tabs li {
+  cursor: pointer;
 }
 .crud-control {
   cursor: pointer;
@@ -104,4 +116,7 @@ ul.navbar-nav {
 }
 .region-cell {
   width: 250px;
+}
+.check-lbl {
+  padding: 0px 10px 0px 5px;
 }

@@ -4,6 +4,22 @@ $(function () {
 });
 
 var bindHandlers = function () {
+    /*************** nav *******************/
+    $(document).on('click', '.nav-practitioner', function(){
+        if(!$(this).hasClass('active')){
+            $(this).closest('ul').find('li').removeClass('active');
+            $(this).addClass('active');
+
+            ajaxCall(
+                $(this).find('a').attr('data-url'),
+                {},
+                function (response) {
+                    $('.mainContent').html(response);
+                }
+            );
+        }
+    })
+
     /********** visual effects *************/
     $(document).on('mouseenter', '.display-table .delete-entry',
         function () { $(this).css('color', 'red'); }

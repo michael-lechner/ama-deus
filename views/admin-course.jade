@@ -1,0 +1,20 @@
+.row
+    .col-xs-12
+        form(role='form').form-inline.admin-form    
+            h4 New Course
+            .checkbox
+                label 
+                    input(type='checkbox', name='first-level')
+                    span.check-lbl First Level
+            .checkbox
+                input(type='checkbox', name='second-level')
+                span.check-lbl Second Level
+            .form-group.admin-input.col-xs-3
+                input(type='text', name='city', placeholder='City').form-control.col-xs-12
+            .form-group.admin-input.col-xs-2
+                input(type='text', name='country', placeholder='Country').form-control.col-xs-12           
+            .form-group.admin-input.col-xs-2
+                input(type='text', name='start-date', placeholder='Start ').form-control.col-xs-12#datepicker
+            .form-group.admin-input.col-xs-2
+                input(type='text', name='end-date', placeholder='End ').form-control.col-xs-12#datepicker                
+            input(type='submit', value="submit").btn.btn-default.practitioner-submit

@@ -3,6 +3,13 @@ var practitionerModel = require('../models/practitionerModel.js');
 var courseModel = require('../models/courseModel.js');
 
 var admin = module.exports = {
+    index: function (req, res){
+        practitionerModel.find({}, function(err, docs){
+            if(err) console.log('error in adminController.index', err);
+            res.render('adminMain.jade', { 'practitioners': docs })
+        });   
+    },
+    /*************** practitioners ****************/
     createPractitioner: function (req, res){
         var practitioner = new practitionerModel({
             name: req.body.data.name,
@@ -14,14 +21,14 @@ var admin = module.exports = {
         practitioner.save(function () {
             practitionerModel.find({}, function(err, docs){
                 if(err) console.log('error in adminController.index', err);
-                res.render('partials/table-partial.jade', { 'practitioners': docs })
+                res.render('partials/practitioner-table-partial.jade', { 'practitioners': docs })
             });
         });
     },
     readPractitioner: function(req, res){
         practitionerModel.find({}, function(err, docs){
             if(err) console.log('error in adminController.index', err);
-            res.render('admin.jade', { 'practitioners': docs })
+            res.render('admin-practitioner.jade', { 'practitioners': docs })
         });
     },
     updatePractitioner: function (req, res){
@@ -47,6 +54,21 @@ var admin = module.exports = {
             doc.remove();
             res.send(doc)
         });      
-    }
+    },
+
+    /*************** courses ****************/
+    createCourse: function (req, res){
+        console.log('create course not implemented yet');        
+    },
+    readCourse: function (req, res){
+        res.render('admin-course.jade');
+    },
+    updateCourse: function (req, res){
+        console.log('update course not implemented yet');
+    },
+    deleteCourse: function (req, res){
+        console.log('delete course not implemented yet');
+    },
+
 
 }

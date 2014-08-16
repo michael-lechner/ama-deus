@@ -1,0 +1,27 @@
+extends adminLayout
+
+block mainContent
+    .row
+        .col-xs-12
+            form(role='form').form-inline.admin-form    
+                h4 New Practictioner
+                .form-group.admin-input.col-xs-4
+                    input(type='text', name='name', placeholder='Name').form-control.col-xs-12
+                .form-group.admin-input.col-xs-2
+                    input(type='text', name='country', placeholder='Country').form-control.col-xs-12
+                .form-group.admin-input.col-xs-3
+                    input(type='email', name='email', placeholder='Email').form-control.col-xs-12
+                .form-group.admin-input.col-xs-2
+                    input(type='text', name='region', placeholder='Region').form-control.col-xs-12
+                input(type='submit', value="submit").btn.btn-default.practitioner-submit
+    .row
+        .col-xs-12
+            table.table.table-hover.display-table        
+                for practitioner in practitioners
+                    tr(data-id = '#{practitioner._id}')
+                        td(name='name').name-cell.editable-field.text-capitalize #{practitioner.name}
+                        td(name='country').country-cell.editable-field.text-uppercase #{practitioner.country}
+                        td(name='email').email-cell.editable-field #{practitioner.email}
+                        td(name='region').region-cell.editable-field.text-capitalize #{practitioner.region}
+                        td
+                            .span.crud-control.delete-entry x

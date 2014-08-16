@@ -40,10 +40,17 @@ app.get('/contact', main.contact);
 /************/
 
 /*** admin ***/
-app.get('/admin', admin.readPractitioner);
+app.get('/admin', admin.index)
+
+app.post('/read-practitioner', admin.readPractitioner);
 app.post('/create-practitioner', admin.createPractitioner);
 app.post('/delete-practitioner', admin.deletePractitioner);
 app.post('/update-practitioner', admin.updatePractitioner);
+
+app.post('/read-course', admin.readCourse);
+app.post('/create-course', admin.createCourse);
+app.post('/delete-course', admin.deleteCourse);
+app.post('/update-course', admin.updateCourse);
 /*************/
 
 http.createServer(app).listen(app.get('port'), function(){
