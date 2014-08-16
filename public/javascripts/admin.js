@@ -16,13 +16,14 @@ var bindHandlers = function () {
     /********** ajax actions ******************/
     $(document).on('click', '.display-table .delete-entry', function(){
         var id = $(this).closest('tr').attr('data-id');
-        $.ajax({
-            url: '/delete-practitioner',
-            type: 'POST',
-            dataType: 'JSON',
-            data: {id: id},
-            success: removeTableEntry
-        });
+
+        ajaxCall(
+            '/delete-practitioner',
+            { id: id },
+            removeTableEntry
+        );
+
+
     })
 
     $(document).on('click', '.practitioner-submit', function (e) {
@@ -32,19 +33,16 @@ var bindHandlers = function () {
         
         clearForm(inputList);
 
-        $.ajax({
-            url: '/create-practitioner',
-            type: 'POST',
-            data: {data: formData},
-            success: replaceTable
-        });
+        ajaxCall(
+            '/create-practitioner', 
+            { data: formData }, 
+            replaceTable
+        );
     });
 
     $(document).on('click', '.editable-field', function () {
         var val = $(this).text();
         var width = $(this).innerWidth();
-
-        console.log(width);
 
         $(this).html('<input style="width: ' + width + 'px; " type="text" class="form-control" value="' + val + '">');
         
@@ -52,21 +50,34 @@ var bindHandlers = function () {
         
         $(this).focusout(function () {
             var newVal = $(this).find('input').val();
+            var row = $(this).closest('tr');
             $(this).html(newVal);
 
-            // $.ajax({
-            //     url: '/delete-practitioner',
-            //     type: 'POST',
-            //     dataType: 'JSON',
-            //     data: {id: id}
-            // })
-        });
+            ajaxCall(
+                '/update-practitioner',
+                {
+                    id: row.attr('data-id'),
+                    data: gatherTdData(row.find('td'))
+                }
+            );
+         });
     });
 }
 
 /********** helper functions *****************/
+var ajaxCall = function (url, data, successFunc){
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: data,
+            success: successFunc
+        });
+}
+
 var clearForm = function (inputList) {
-    inputList.val('');
+    $.each(inputList, function () {
+        if(!$(this).hasClass('practitioner-submit')) $(this).val('');
+    });
 }
 
 var removeTableEntry = function (response) {
@@ -92,4 +103,12 @@ var gatherFormData = function (inputList) {
         if($(this).attr('name')) data[$(this).attr('name')] = $(this).val();
     });
     return(data);
+}
+
+var gatherTdData = function (dataList){
+    var data = {}
+    $.each(dataList, function () {
+        if($(this).attr('name')) data[$(this).attr('name')] = $(this).text();
+    });
+    return(data);    
 }

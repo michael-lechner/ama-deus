@@ -1,8 +1,8 @@
 for practitioner in practitioners
     tr(data-id = '#{practitioner._id}')
-        td(data-name='name').name-cell.editable-field.text-capitalize #{practitioner.name}
-        td(data-name='country').country-cell.editable-field.text-uppercase #{practitioner.country}
-        td(data-name='email').email-cell.editable-field #{practitioner.email}
-        td(data-name='region').region-cell.editable-field.text-capitalize #{practitioner.region}
+        td(name='name').name-cell.editable-field.text-capitalize #{practitioner.name}
+        td(name='country').country-cell.editable-field.text-uppercase #{practitioner.country}
+        td(name='email').email-cell.editable-field #{practitioner.email}
+        td(name='region').region-cell.editable-field.text-capitalize #{practitioner.region}
         td
             .span.crud-control.delete-entry x

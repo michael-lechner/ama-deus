@@ -25,11 +25,21 @@ var admin = module.exports = {
         });
     },
     updatePractitioner: function (req, res){
-        /***** TODO: MJL******/
-        /* construct data in ajax call
-         * send doc id
-         * decide wether to replace whole table
-         */
+        console.log(req.body);
+
+        practitionerModel.findOneAndUpdate(
+            { _id: req.body.id },
+            {
+                name: req.body.data.name,
+                country: req.body.data.country,
+                email: req.body.data.email,
+                region: req.body.data.region
+            },
+            function(err, doc) {
+                if(err) console.log('error in adminController.update', err);
+                res.send({success: 'true'})
+            }
+        );
     },
     deletePractitioner: function (req, res){
         practitionerModel.findOne({_id: req.body.id}, function(err, doc){
