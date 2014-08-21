@@ -1,0 +1,26 @@
+html
+  head
+    head
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+    title Ama-Deus
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+body
+    .container
+        form(action='login' method='post').form
+            .row
+                .form-group.col-xs-6
+                    .label Username:
+                    input(type='text' name='username' placeholder='Username').form-control
+            .row        
+                .form-group.col-xs-6
+                    .label Password:
+                    input(type='password' name='password' placeholder='Password').form-control    
+            .row
+                .col-xs-6
+                    input(type='submit' value='Submit').btn.btn-primary.pull-right    
+
+script(src="http://code.jquery.com/jquery-2.0.3.min.js")
+script(src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
+script(src="javascripts/admin.js")        

@@ -5,9 +5,15 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+
+/* controllers */
 var main = require('./controllers/mainController.js');
 var admin = require('./controllers/adminController.js');
+
+/* plugins */
 var mongoose = require('mongoose');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 var app = express();
 
@@ -20,6 +26,8 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(app.router);
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -40,7 +48,14 @@ app.get('/contact', main.contact);
 /************/
 
 /*** admin ***/
-app.get('/admin', admin.index)
+app.get('/admin', admin.login)
+app.post('/login', admin.authenticate);
+ 
+app.get('/loginFailure', function(req, res, next) {
+  res.send('Failed to authenticate');
+}); 
+
+app.get('/index', admin.index)
 
 app.post('/read-practitioner', admin.readPractitioner);
 app.post('/create-practitioner', admin.createPractitioner);
@@ -52,6 +67,7 @@ app.post('/create-course', admin.createCourse);
 app.post('/delete-course', admin.deleteCourse);
 app.post('/update-course', admin.updateCourse);
 /*************/
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
