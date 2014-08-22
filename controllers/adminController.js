@@ -4,51 +4,15 @@ var courseModel = require('../models/courseModel.js');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-/***** passport functions *****/
-
-
 var admin = module.exports = {
     login: function (req, res){
             res.render('login.jade');
     },
-    authenticate: function (req, res){
-        passport.use(new LocalStrategy(function(username, password, done) {
-            process.nextTick(function() {
-                // Auth Check Logic
-                return done(null, false);
-            });
-        }));
-
-        passport.serializeUser(function(user, done) {
-          done(null, user);
-        });
- 
-        passport.deserializeUser(function(user, done) {
-          done(null, user);
-        });
-        
-        passport.authenticate('local', {
-            successRedirect: res.redirect('/index'),
-            failureRedirect: res.redirect('/loginFailure')
-        })
-    },
     index: function (req, res){
-        // if(!req.user)
         practitionerModel.find({}, function(err, docs){
-            console.log('user', req.user);
             if(err) console.log('error in adminController.index', err);
                 res.render('adminMain.jade', { 'practitioners': docs })
         });
-
-        // passport.authenticate('local', function (err, user, info) {
-        //     // console.log('user', user);
-        //     // if(!user) {return res.redirect('/admin')}
-        
-        //     // practitionerModel.find({}, function(err, docs){
-        //     //     if(err) console.log('error in adminController.index', err);
-        //     //     res.render('adminMain.jade', { 'practitioners': docs })
-        //     // });                     
-        // }); 
     }, 
     /*************** practitioners ****************/
     createPractitioner: function (req, res){

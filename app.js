@@ -6,14 +6,17 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 
-/* controllers */
-var main = require('./controllers/mainController.js');
-var admin = require('./controllers/adminController.js');
-
 /* plugins */
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+
+/* controllers */
+var main = require('./controllers/mainController.js');
+var admin = require('./controllers/adminController.js');
+
+/* models */
+var userModel = require('./models/userModel.js');
 
 var app = express();
 
@@ -49,13 +52,27 @@ app.get('/contact', main.contact);
 
 /*** admin ***/
 app.get('/admin', admin.login)
-app.post('/login', admin.authenticate);
+
+app.post('/login',
+  passport.authenticate('local', {
+    successRedirect: '/index',
+    failureRedirect: '/loginFailure'
+  })
+);
  
 app.get('/loginFailure', function(req, res, next) {
   res.send('Failed to authenticate');
-}); 
+});
+ 
+//app.get('/index', admin.index)
 
-app.get('/index', admin.index)
+app.get('/index', passport.authenticate('local', function (err, user, info) {
+        // need to send err user etc. along
+        console.log('user', user);
+        console.log('err', err);
+        console.log('info', info);
+    }
+));
 
 app.post('/read-practitioner', admin.readPractitioner);
 app.post('/create-practitioner', admin.createPractitioner);
@@ -68,6 +85,29 @@ app.post('/delete-course', admin.deleteCourse);
 app.post('/update-course', admin.updateCourse);
 /*************/
 
+/***** passport functions *****/
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+ 
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.use(new LocalStrategy(function(username, password, done) {
+    process.nextTick(function() {
+    // db connection
+        userModel.findOne({
+                'username': username    
+            }, function (err, user) {
+                // Auth Check Logic
+                if(err) return done(err);
+                if(!user) return done(null, false);
+
+                return done(null, user);
+        });
+    });
+}));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
