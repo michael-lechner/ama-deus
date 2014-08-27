@@ -29,6 +29,8 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(express.cookieParser());
+app.use(express.session({secret: 'supersecretsoftheuniverse'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
@@ -64,25 +66,18 @@ app.get('/loginFailure', function(req, res, next) {
   res.send('Failed to authenticate');
 });
  
-//app.get('/index', admin.index)
+app.get('/index', admin.ensureAuthenticated, admin.index);
+app.get('/logout', admin.ensureAuthenticated, admin.logout);
 
-app.get('/index', passport.authenticate('local', function (err, user, info) {
-        // need to send err user etc. along
-        console.log('user', user);
-        console.log('err', err);
-        console.log('info', info);
-    }
-));
+app.post('/read-practitioner', admin.ensureAuthenticated, admin.readPractitioner);
+app.post('/create-practitioner', admin.ensureAuthenticated, admin.createPractitioner);
+app.post('/delete-practitioner', admin.ensureAuthenticated, admin.deletePractitioner);
+app.post('/update-practitioner', admin.ensureAuthenticated, admin.updatePractitioner);
 
-app.post('/read-practitioner', admin.readPractitioner);
-app.post('/create-practitioner', admin.createPractitioner);
-app.post('/delete-practitioner', admin.deletePractitioner);
-app.post('/update-practitioner', admin.updatePractitioner);
-
-app.post('/read-course', admin.readCourse);
-app.post('/create-course', admin.createCourse);
-app.post('/delete-course', admin.deleteCourse);
-app.post('/update-course', admin.updateCourse);
+app.post('/read-course', admin.ensureAuthenticated, admin.readCourse);
+app.post('/create-course', admin.ensureAuthenticated, admin.createCourse);
+app.post('/delete-course', admin.ensureAuthenticated, admin.deleteCourse);
+app.post('/update-course', admin.ensureAuthenticated, admin.updateCourse);
 /*************/
 
 /***** passport functions *****/
@@ -104,6 +99,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
                 if(err) return done(err);
                 if(!user) return done(null, false);
 
+                console.log('should authenticate');
                 return done(null, user);
         });
     });

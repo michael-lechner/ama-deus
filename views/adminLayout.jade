@@ -8,6 +8,8 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
 body
     .container.admin-container
+        span.pull-right.sign-out
+            a(href='/logout') sign out
         ul(role='tablist').nav.nav-tabs
             li.active.nav-practitioner
                 a(href='javascript:void(0)' data-url='/read-practitioner') practitioners

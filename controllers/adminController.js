@@ -6,7 +6,11 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var admin = module.exports = {
     login: function (req, res){
-            res.render('login.jade');
+        res.render('login.jade');
+    },
+    logout: function (req, res){
+        req.logout();
+        res.redirect('/admin');
     },
     index: function (req, res){
         practitionerModel.find({}, function(err, docs){
@@ -14,6 +18,13 @@ var admin = module.exports = {
                 res.render('adminMain.jade', { 'practitioners': docs })
         });
     }, 
+    ensureAuthenticated: function (req, res, next) {
+        if (req.isAuthenticated()){
+            return next();
+        }else{
+            res.redirect('/loginFailure');
+        }
+    },
     /*************** practitioners ****************/
     createPractitioner: function (req, res){
         var practitioner = new practitionerModel({
