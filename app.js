@@ -53,7 +53,11 @@ app.get('/contact', main.contact);
 /************/
 
 /*** admin ***/
-app.get('/admin', admin.login)
+app.get('/newuser', admin.newUser);
+app.post('/createuser', admin.createUser);
+app.post('/deleteuser', admin.deleteUser);
+
+app.get('/admin', admin.login);
 
 app.post('/login',
   passport.authenticate('local', {

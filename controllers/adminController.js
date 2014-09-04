@@ -1,10 +1,35 @@
 var mongoose = require('mongoose');
 var practitionerModel = require('../models/practitionerModel.js');
 var courseModel = require('../models/courseModel.js');
+var userModel = require('../models/userModel.js');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 var admin = module.exports = {
+    newUser : function (req, res){
+        userModel.find({}, function(err, docs){
+            if(err) console.log('error in adminController.index', err);
+            res.render('admin-new-user.jade', { 'users': docs })
+        });
+    },
+    createUser: function (req, res){
+        var user = new userModel({
+            username: req.body.username,
+            password: req.body.password
+        });
+
+        user.save(function () {
+            res.redirect('/newuser');
+        });
+
+    },
+    deleteUser: function (req, res){
+        userModel.findOne({_id: req.body.id}, function(err, doc){
+            if(err) console.log('error in adminController.index', err);
+            doc.remove();
+            res.send(doc)
+        });      
+    }, 
     login: function (req, res){
         res.render('login.jade');
     },

@@ -1,0 +1,28 @@
+extends admin-login-layout
+
+block content
+    .container
+        .row
+            h4 Create new Amadeus user
+        .row
+            form(action='createuser' method='post').form
+                .row
+                    .form-group.col-xs-6
+                        .label Username:
+                        input(type='text' name='username' placeholder='Username').form-control
+                .row        
+                    .form-group.col-xs-6
+                        .label Password:
+                        input(type='password' name='password' placeholder='Password').form-control    
+                .row
+                    .col-xs-6
+                        input(type='submit' value='Submit').btn.btn-primary.pull-right    
+        .row
+            .col-xs-12
+                table.table.table-hover.display-table
+                    for user in users
+                        tr(data-id = '#{user._id}')
+                            td(name='username') #{user.username}
+                            td(name='password') #{user.password}
+                            td
+                                .span.crud-control.delete-user-entry x

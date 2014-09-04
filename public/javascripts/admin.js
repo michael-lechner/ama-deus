@@ -30,7 +30,19 @@ var bindHandlers = function () {
     )
 
     /********** ajax actions ******************/
-    $(document).on('click', '.display-table .delete-entry', function(){
+    /********** users *************************/
+    $(document).on('click', '.display-table .delete-user-entry', function(){
+        var id = $(this).closest('tr').attr('data-id');
+
+        ajaxCall(
+            '/deleteuser',
+            { id: id },
+            removeTableEntry
+        );
+    });
+
+    /********** practitioners *****************/
+    $(document).on('click', '.display-table .delete-practitioner-entry', function(){
         var id = $(this).closest('tr').attr('data-id');
 
         ajaxCall(
@@ -38,9 +50,7 @@ var bindHandlers = function () {
             { id: id },
             removeTableEntry
         );
-
-
-    })
+    });
 
     $(document).on('click', '.practitioner-submit', function (e) {
         e.preventDefault();
@@ -78,6 +88,9 @@ var bindHandlers = function () {
             );
          });
     });
+
+    /********** courses *************************/
+
 }
 
 /********** helper functions *****************/
