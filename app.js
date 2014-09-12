@@ -10,6 +10,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require('bcrypt');
 
 /* controllers */
 var main = require('./controllers/mainController.js');
@@ -67,7 +68,7 @@ app.post('/login',
 );
  
 app.get('/loginFailure', function(req, res, next) {
-  res.send('Failed to authenticate');
+  res.redirect('/admin');
 });
  
 app.get('/index', admin.ensureAuthenticated, admin.index);
@@ -103,8 +104,12 @@ passport.use(new LocalStrategy(function(username, password, done) {
                 if(err) return done(err);
                 if(!user) return done(null, false);
 
-                console.log('should authenticate');
-                return done(null, user);
+                bcrypt.compare(password, user.password, function (err, isMatch) {
+                  if(err) console.log(err);
+                  if(isMatch) return done(null, user);
+
+                  return done(null, false)
+                });
         });
     });
 }));
