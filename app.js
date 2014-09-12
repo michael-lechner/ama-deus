@@ -19,6 +19,10 @@ var admin = require('./controllers/adminController.js');
 /* models */
 var userModel = require('./models/userModel.js');
 
+/* Globals */
+var MAX_LOGINS = 3;
+var LOCKOUT_TIME = 50000;
+
 var app = express();
 
 // all environments
@@ -68,7 +72,7 @@ app.post('/login',
 );
  
 app.get('/loginFailure', function(req, res, next) {
-  res.redirect('/admin');
+    res.redirect('/admin');    
 });
  
 app.get('/index', admin.ensureAuthenticated, admin.index);
@@ -100,13 +104,32 @@ passport.use(new LocalStrategy(function(username, password, done) {
         userModel.findOne({
                 'username': username    
             }, function (err, user) {
+
+                if(user.loginAttempts <= MAX_LOGINS){
+                  user.loginAttempts = ++user.loginAttempts;
+                }else{
+                  user.lockUntil = Date.now() + LOCKOUT_TIME;
+                }
+
+                // console.log(Date.now())
+                // console.log(Date.now() + LOCKOUT_TIME)
+
+                user.save();
+
                 // Auth Check Logic
                 if(err) return done(err);
                 if(!user) return done(null, false);
+                console.log(user.lockUntil > Date.now());
+                if(user.lockUntil && user.lockUntil > Date.now()) return done(null, false);
 
                 bcrypt.compare(password, user.password, function (err, isMatch) {
                   if(err) console.log(err);
-                  if(isMatch) return done(null, user);
+                  if(isMatch){
+                    user.loginAttempts = 0;
+                    user.lockUntil = null;
+                    user.save();
+                    return done(null, user);
+                  } 
 
                   return done(null, false)
                 });
