@@ -4,6 +4,7 @@
  */
 var express = require('express');
 var http = require('http');
+var https = require('https');
 var path = require('path');
 
 /* plugins */
@@ -21,7 +22,7 @@ var userModel = require('./models/userModel.js');
 
 /* Globals */
 var MAX_LOGINS = 3;
-var LOCKOUT_TIME = 50000;
+var LOCKOUT_TIME = 0;
 
 var app = express();
 
@@ -67,14 +68,17 @@ app.get('/admin', admin.login);
 app.post('/login',
   passport.authenticate('local', {
     successRedirect: '/index',
-    failureRedirect: '/loginFailure'
+    failureRedirect: '/loginFailure',
+    failureFlash: true
   })
 );
  
 app.get('/loginFailure', function(req, res, next) {
+    console.log(next);
     res.redirect('/admin');    
 });
- 
+
+app.get('images', function (req, res) {console.log('hi');res.redirect('/images')})
 app.get('/index', admin.ensureAuthenticated, admin.index);
 app.get('/logout', admin.ensureAuthenticated, admin.logout);
 
@@ -111,15 +115,11 @@ passport.use(new LocalStrategy(function(username, password, done) {
                   user.lockUntil = Date.now() + LOCKOUT_TIME;
                 }
 
-                // console.log(Date.now())
-                // console.log(Date.now() + LOCKOUT_TIME)
-
                 user.save();
 
                 // Auth Check Logic
                 if(err) return done(err);
                 if(!user) return done(null, false);
-                console.log(user.lockUntil > Date.now());
                 if(user.lockUntil && user.lockUntil > Date.now()) return done(null, false);
 
                 bcrypt.compare(password, user.password, function (err, isMatch) {

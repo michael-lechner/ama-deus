@@ -3,6 +3,19 @@ $(function () {
 
 });
 
+var bindCourseHandlers = function () {
+    $('#startDate').datepicker({
+        onSelect: function (date, ui) {
+            $(this).attr('data-date', date);
+        }
+    });
+    $('#endDate').datepicker({
+        onSelect: function (date, ui){
+            $(this).attr('data-date', date);
+        }
+    });
+}
+
 var bindHandlers = function () {
     /*************** nav *******************/
     $(document).on('click', '.nav-practitioner', function(){
@@ -15,6 +28,7 @@ var bindHandlers = function () {
                 {},
                 function (response) {
                     $('.mainContent').html(response);
+                    bindCourseHandlers();
                 }
             );
         }
@@ -33,7 +47,6 @@ var bindHandlers = function () {
     /********** users *************************/
     $(document).on('click', '.display-table .delete-user-entry', function(){
         var id = $(this).closest('tr').attr('data-id');
-
         ajaxCall(
             '/deleteuser',
             { id: id },
@@ -44,6 +57,7 @@ var bindHandlers = function () {
     /********** practitioners *****************/
     $(document).on('click', '.display-table .delete-practitioner-entry', function(){
         var id = $(this).closest('tr').attr('data-id');
+        console.log('hi');
 
         ajaxCall(
             '/delete-practitioner',

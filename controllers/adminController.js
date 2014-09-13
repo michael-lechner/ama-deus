@@ -40,7 +40,7 @@ var admin = module.exports = {
     index: function (req, res){
         practitionerModel.find({}, function(err, docs){
             if(err) console.log('error in adminController.index', err);
-                res.render('adminMain.jade', { 'practitioners': docs })
+                res.render('admin-practitioner.jade', { 'practitioners': docs })
         });
     }, 
     ensureAuthenticated: function (req, res, next) {
@@ -69,7 +69,7 @@ var admin = module.exports = {
     readPractitioner: function(req, res){
         practitionerModel.find({}, function(err, docs){
             if(err) console.log('error in adminController.index', err);
-            res.render('admin-practitioner.jade', { 'practitioners': docs })
+            res.render('partials/admin-practitioner-partial.jade', { 'practitioners': docs })
         });
     },
     updatePractitioner: function (req, res){
@@ -92,7 +92,7 @@ var admin = module.exports = {
     deletePractitioner: function (req, res){
         practitionerModel.findOne({_id: req.body.id}, function(err, doc){
             if(err) console.log('error in adminController.index', err);
-            doc.remove();
+            if(doc) doc.remove();
             res.send(doc)
         });      
     },
