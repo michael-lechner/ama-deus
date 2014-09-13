@@ -49,7 +49,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
-  //mongoose.connect('mongodb://localhost/ama-deus')
 }
 
 /*** nav ***/
@@ -62,9 +61,9 @@ app.get('/contact', main.contact);
 /************/
 
 /*** admin ***/
-app.get('/newuser', admin.newUser);
-app.post('/createuser', admin.createUser);
-app.post('/deleteuser', admin.deleteUser);
+// app.get('/newuser', admin.newUser);
+// app.post('/createuser', admin.createUser);
+// app.post('/deleteuser', admin.deleteUser);
 
 app.get('/admin', admin.login);
 
