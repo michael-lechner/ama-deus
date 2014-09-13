@@ -6,6 +6,7 @@ var express = require('express');
 var http = require('http');
 var https = require('https');
 var path = require('path');
+var db = require('./db-config.js');
 
 /* plugins */
 var mongoose = require('mongoose');
@@ -22,9 +23,11 @@ var userModel = require('./models/userModel.js');
 
 /* Globals */
 var MAX_LOGINS = 3;
-var LOCKOUT_TIME = 0;
+var LOCKOUT_TIME = 50000;
 
 var app = express();
+
+db.connect();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -42,12 +45,6 @@ app.use(passport.session());
 app.use(app.router);
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-  mongoose.connect('mongodb://localhost/ama-deus')
-}
 
 /*** nav ***/
 app.get('/', main.index);
