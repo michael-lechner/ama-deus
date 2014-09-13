@@ -6,7 +6,7 @@ var express = require('express');
 var http = require('http');
 var https = require('https');
 var path = require('path');
-//var db = require('./db-config.js');
+var db = require('./db-config.js');
 
 /* plugins */
 var mongoose = require('mongoose');
@@ -27,7 +27,7 @@ var LOCKOUT_TIME = 50000;
 
 var app = express();
 
-//db.connect();
+db.connect();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
