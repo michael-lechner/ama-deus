@@ -17,7 +17,7 @@ $(function () {
     });
 
     $('.main-nav').on('click', '.courses', function () {
-        renderView('courses');
+        renderView('courses', buildMap);
     });
     
     $('.main-nav').on('click', '.info', function () {
@@ -29,13 +29,38 @@ $(function () {
     });
     /*******************************/
 
-    var renderView = function (view) {
+    /*********** map ***************/
+    var buildMap = function () {
+        console.log('tight', $('.interactive-map'));
+        $('.interactive-map').highcharts('Map', {
+            title: {
+                text: 'People and Courses'
+            },
+            series : [{
+                data: {},
+                mapData: Highcharts.maps['custom/world'],
+                joinBy: 'hc-key',
+                name: 'People and Courses',
+                states: {
+                    hover: {
+                        color: '#BADA55'
+                    }
+                }
+            }]
+        });
+    }
+
+    // mapChart.get('us').select();
+    /*******************************/
+
+    var renderView = function (view, cb) {
         $.get('/' + view + '/', {}, function (d) {
             var block = $('.main-block')
 
             block.fadeOut(300, function () {
                 block.html(d);
-                block.fadeIn(400);                
+                block.fadeIn(400);     
+                cb();           
             });
 
         });        
