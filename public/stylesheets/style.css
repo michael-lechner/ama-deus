@@ -77,6 +77,31 @@ ul.navbar-nav {
 .row.center-row {
   padding: 0px 0px 10px 0px;
 }
+.home-center-top img {
+  height: 334px;
+}
+.home-center-bottom img {
+  height: 220px;
+}
+.home-right img {
+  height: 564px;
+}
+.home-img {
+  position: relative;
+}
+.home-img .overlay {
+  display: none;
+  position: absolute;
+  top: 0px;
+  color: #fff;
+  background-color: rgba(52,73,94,0.4);
+}
+.home-img .overlay .quote {
+  position: relative;
+  text-align: center;
+  width: 60%;
+  margin: 20% auto;
+}
 /*******************/
 .col-sm-12.index-footer {
   background-color: #f0f0f0;

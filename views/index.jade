@@ -3,21 +3,24 @@ extends layout
 block content
   .row.main-block
     .col-sm-12.no-padding
-        .col-sm-3.no-padding
-            img(src='images/flower-test.png')
+        .col-sm-3.no-padding.home-left.home-img
+            img(src='/images/home-left.png')
+            .overlay 
+                .quote some inspirational quote thing
         .col-sm-9.no-padding
             .row
                 .col-sm-5.center-cont
                     .row.center-row
-                        .col-sm-12
-                            img(src='images/purple-test.png')
+                        .col-sm-12.home-center-top.home-img
+                            img(src='/images/home-center-top.png')
+                            .overlay 
+                                .quote some inspirational quote thing
                     .row
-                        .col-sm-12
-                            img(src='images/teal.png')
-                .col-sm-7.no-padding
-                    img(src='images/sand.png')
-            .row
-                .col-sm-12.index-footer
-                    p.text-muted &copy; International Association of Ama-Deus
-                        sup &reg;
-                        , LLC All Rights Reserved - Registered U.S. Trademark
+                        .col-sm-12.home-center-bottom.home-img
+                            img(src='/images/home-center-bottom.png')
+                            .overlay 
+                                .quote some inspirational quote thing
+                .col-sm-7.no-padding.home-right.home-img
+                    img(src='/images/home-right.png')
+                    .overlay 
+                        .quote some inspirational quote thing

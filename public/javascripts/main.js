@@ -17,7 +17,7 @@ $(function () {
     });
 
     $('.main-nav').on('click', '.courses', function () {
-        renderView('courses', buildMap);
+        renderView('courses');
     });
     
     $('.main-nav').on('click', '.info', function () {
@@ -27,7 +27,21 @@ $(function () {
     $('.main-nav').on('click', '.contact', function () {
         renderView('contact');
     });
+
+    $('.main-block').on('mouseenter', '.home-img', function () {
+        var overlay = $(this).find('.overlay');
+        overlay.width($(this).width());
+        overlay.height($(this).height());
+
+        overlay.fadeIn();
+    });
+
+    $('.main-block').on('mouseleave', '.home-img', function () {
+        var overlay = $(this).find('.overlay');
+        overlay.fadeOut(600);
+    });
     /*******************************/
+
 
     /*********** map ***************/
     var buildMap = function () {
@@ -52,18 +66,10 @@ $(function () {
 
     // mapChart.get('us').select();
     /*******************************/
-
-    var renderView = function (view, cb) {
-        $.get('/' + view + '/', {}, function (d) {
-            var block = $('.main-block')
-
-            block.fadeOut(300, function () {
-                block.html(d);
-                block.fadeIn(400);     
-                cb();           
-            });
-
-        });        
+    var renderView = function (view){
+        $('body').fadeOut(300, function () {
+            window.location.href = '/' + view + '/'             
+        });
     }
 
 });
