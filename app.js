@@ -53,7 +53,7 @@ if ('development' == app.get('env')) {
 
 /*** nav ***/
 app.get('/', main.index);
-app.get('/home', main.home);
+app.get('/home', main.index);
 app.get('/about', main.about);
 app.get('/courses', main.courses);
 app.get('/info', main.info);

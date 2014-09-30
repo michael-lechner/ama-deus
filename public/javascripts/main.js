@@ -1,4 +1,9 @@
 $(function () {
+    /********** page load **********/
+    $('.quote-container .quote').delay(1000).fadeIn(1500, function () {
+        $('.quote-container .author').fadeIn(1500);
+    });
+
     /********** handlers ***********/
     $('.navbar li:not(.active) a').hover(function () {
         $(this).animate({color: 'rgba(130, 78, 135, 1.0)'}, 500);
@@ -33,7 +38,7 @@ $(function () {
         overlay.width($(this).width());
         overlay.height($(this).height());
 
-        overlay.fadeIn();
+        overlay.fadeIn(600);
     });
 
     $('.main-block').on('mouseleave', '.home-img', function () {

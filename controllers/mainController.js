@@ -4,12 +4,6 @@ var main = module.exports = {
     index: function(req, res){
         res.render('index.jade');
     },
-    home: function (req, res) {
-        jade.renderFile('./views/home.jade', {} ,function (err, html) {
-            if(err) console.log(err);
-            res.send(html);
-        });
-    },
     about: function (req, res) {
         jade.renderFile('./views/about.jade', {} ,function (err, html) {
             if(err) console.log(err);

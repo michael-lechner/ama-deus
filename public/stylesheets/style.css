@@ -96,11 +96,38 @@ ul.navbar-nav {
   color: #fff;
   background-color: rgba(52,73,94,0.4);
 }
+.home-img .overlay {
+  font-family: 'Copse', serif;
+  font-size: 16px;
+}
 .home-img .overlay .quote {
   position: relative;
   text-align: center;
   width: 60%;
-  margin: 20% auto;
+  margin: 20% auto 0 auto;
+}
+.home-img .overlay .author {
+  text-align: center;
+}
+/*******************/
+/****page styles****/
+.left-bar .quote-container {
+  position: absolute;
+  text-align: center;
+  padding: 20px 20px 20px 20px;
+  color: #fff;
+  font-family: 'Copse', serif;
+  font-size: 20px;
+  top: 200px;
+}
+.left-bar .quote {
+  display: none;
+}
+.left-bar .author {
+  display: none;
+}
+.footer {
+  background-color: #f7f7f7;
 }
 /*******************/
 .col-sm-12.index-footer {
