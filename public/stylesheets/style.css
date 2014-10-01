@@ -40,10 +40,18 @@ ul.navbar-nav {
   margin: 15px 0px 0px 0px;
   cursor: pointer;
 }
+.main-row {
+  height: 519px;
+}
 .content-block {
   background-color: #f7f7f7;
-  margin: 0px 0px 0px 25px;
   padding: 30px 180px 130px 40px;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.content-block .ps-scrollbar-y-rail {
+  right: 24px;
 }
 .content-block h1 {
   font-size: 16px;
@@ -111,6 +119,12 @@ ul.navbar-nav {
 }
 /*******************/
 /****page styles****/
+.left-bar {
+  height: 100%;
+}
+.left-bar img {
+  height: 100%;
+}
 .left-bar .quote-container {
   position: absolute;
   text-align: center;
@@ -126,18 +140,19 @@ ul.navbar-nav {
 .left-bar .author {
   display: none;
 }
+.about-img {
+  border-radius: 100px;
+  float: left;
+  margin: 0 20px 15px 0;
+}
 .footer {
   background-color: #f7f7f7;
+  padding: 20px 20px 15px 20px;
+  font-size: 12px;
+  margin-top: 13px;
+  text-align: center;
 }
 /*******************/
-.col-sm-12.index-footer {
-  background-color: #f0f0f0;
-  margin: 10px 0px 0px 2.2%;
-  padding: 30px 20px 20px 20px;
-  font-size: 12px;
-  letter-spacing: 3px;
-  width: 97.8%;
-}
 /******** admin *********/
 .nav.nav-tabs li a {
   outline: none;
