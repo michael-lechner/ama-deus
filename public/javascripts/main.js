@@ -1,8 +1,12 @@
 $(function () {
     /********** page load **********/
+    $('body').delay(300).fadeIn(600);
+
     $('.quote-container .quote').delay(1000).fadeIn(1500, function () {
         $('.quote-container .author').fadeIn(1500);
     });
+
+    $('.course-accordion').accordion({heightStyle: 'fill'});
     /********** handlers ***********/
     $('.navbar li:not(.active) a').hover(function () {
         $(this).animate({color: 'rgba(130, 78, 135, 1.0)'}, 500);
@@ -19,13 +23,18 @@ $(function () {
         $(this).addClass('active');
         renderView('about');
     });
+    
+    $('.main-nav').on('click', '.people', function () {
+        $(this).addClass('active');
+        renderView('people');
+    });
 
     $('.main-nav').on('click', '.courses', function () {
         renderView('courses');
     });
     
-    $('.main-nav').on('click', '.info', function () {
-        renderView('info');
+    $('.main-nav').on('click', '.press', function () {
+        renderView('press');
     });
     
     $('.main-nav').on('click', '.contact', function () {

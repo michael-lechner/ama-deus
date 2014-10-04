@@ -3,6 +3,9 @@ html {
   max-width: 1440px;
   overflow-x: hidden;
 }
+body {
+  display: none;
+}
 img {
   max-width: 100%;
 }
@@ -35,6 +38,9 @@ ul.navbar-nav {
 .nav-cont {
   margin: 0px 0px 0px 3%;
 }
+.main-nav.list-inline > li {
+  padding: 0 4px 0 4px;
+}
 .main-logo {
   height: 125px;
   margin: 15px 0px 0px 0px;
@@ -58,6 +64,10 @@ ul.navbar-nav {
   color: #777;
   letter-spacing: 3px;
   margin: 0px 0px 25px 0px;
+}
+.content-block h2 {
+  font-size: 15px;
+  color: #824e87;
 }
 .content-block p {
   font-size: 14px;
@@ -144,6 +154,15 @@ ul.navbar-nav {
   border-radius: 100px;
   float: left;
   margin: 0 20px 15px 0;
+}
+.course-descriptions h2 {
+  margin: 10px 0 10px 0;
+}
+.course-descriptions h2:first-child {
+  margin: 0 0 10px 0;
+}
+.course-descriptions p {
+  margin: 8px 0 8px 0;
 }
 .footer {
   background-color: #f7f7f7;

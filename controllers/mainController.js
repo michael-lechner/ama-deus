@@ -10,14 +10,20 @@ var main = module.exports = {
             res.send(html);
         });
     },
+    people: function (req, res){
+        jade.renderFile('./views/people.jade', {} ,function (err, html) {
+            if(err) console.log(err);
+            res.send(html);
+        });
+    },
     courses: function (req, res) {
         jade.renderFile('./views/courses.jade', {} ,function (err, html) {
             if(err) console.log(err);
             res.send(html);
         });
     },
-    info: function (req, res) {
-        jade.renderFile('./views/info.jade', {} ,function (err, html) {
+    press: function (req, res) {
+        jade.renderFile('./views/press.jade', {} ,function (err, html) {
             if(err) console.log(err);
             res.send(html);
         });

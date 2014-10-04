@@ -54,9 +54,10 @@ if ('development' == app.get('env')) {
 /*** nav ***/
 app.get('/', main.index);
 app.get('/home', main.index);
+app.get('/people', main.people);
 app.get('/about', main.about);
 app.get('/courses', main.courses);
-app.get('/info', main.info);
+app.get('/press', main.press);
 app.get('/contact', main.contact);
 /************/
 
