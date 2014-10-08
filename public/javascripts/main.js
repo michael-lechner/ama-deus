@@ -6,7 +6,17 @@ $(function () {
         $('.quote-container .author').fadeIn(1500);
     });
 
-    $('.course-accordion').accordion({heightStyle: 'fill'});
+    $('.course-accordion').accordion(
+        {
+            heightStyle: 'fill',
+            collapsible: true,
+            animate: 600,
+            icons: {
+                header: 'glyphicon glyphicon-chevron-right',
+                activeHeader: 'glyphicon glyphicon-chevron-down'
+            },
+        }
+    );
     /********** handlers ***********/
     $('.navbar li:not(.active) a').hover(function () {
         $(this).animate({color: 'rgba(130, 78, 135, 1.0)'}, 500);

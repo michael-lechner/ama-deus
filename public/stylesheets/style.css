@@ -1,3 +1,6 @@
+* {
+  outline: none;
+}
 body,
 html {
   max-width: 1440px;
@@ -163,6 +166,46 @@ ul.navbar-nav {
 }
 .course-descriptions p {
   margin: 8px 0 8px 0;
+}
+.course-descriptions .glyphicon {
+  margin: 0 15px 0 0;
+}
+.course-accordion {
+  height: 447px;
+  clear: both;
+}
+.course-accordion h3 {
+  font-size: 16px;
+  margin: 0;
+  padding: 10px 0 10px 0;
+  color: #666;
+  cursor: pointer;
+}
+.course-accordion h3.ui-state-hover {
+  color: #444;
+}
+.course-accordion h3.ui-state-active {
+  color: #444;
+}
+.course-accordion h3:first-child {
+  padding: 30px 0 10px 0;
+}
+.course-accordion .glyphicon {
+  padding: 0 20px 0 0;
+  font-size: 14px;
+}
+.course-accordion .description {
+  background-color: rgba(255,255,255,0.75);
+  padding: 20px 20px 100px 30px;
+  width: 450px;
+  border-radius: 8px;
+  color: #999;
+}
+.course-accordion .description .glyphicon {
+  color: #666;
+}
+.course-accordion .description .glyphicon-heart-empty {
+  color: #824e87;
 }
 .footer {
   background-color: #f7f7f7;
