@@ -80,7 +80,7 @@ app.get('/loginFailure', function(req, res, next) {
     res.redirect('/admin');    
 });
 
-app.get('images', function (req, res) {console.log('hi');res.redirect('/images')})
+app.get('images', function (req, res) {res.redirect('/images')})
 app.get('/index', admin.ensureAuthenticated, admin.index);
 app.get('/logout', admin.ensureAuthenticated, admin.logout);
 

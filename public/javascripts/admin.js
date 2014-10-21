@@ -1,4 +1,6 @@
 $(function () {
+    $('body').delay(300).fadeIn(600);
+
     bindHandlers();
 
 });
